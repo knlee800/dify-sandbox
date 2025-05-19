@@ -36,7 +36,40 @@ var ALLOW_SYSCALLS = []int{
 	syscall.SYS_TIME,
 
 	syscall.SYS_RT_SIGPROCMASK, syscall.SYS_SIGALTSTACK, SYS_GETRANDOM,
+
+	// ── new additions from strace -c ──
+
+	// basic file operations
+	syscall.SYS_STAT, syscall.SYS_FSTAT, syscall.SYS_LSTAT,
+	syscall.SYS_PREAD64, syscall.SYS_ACCESS, syscall.SYS_READLINK,
+
+	// more IO variants
+	syscall.SYS_FCNTL, syscall.SYS_GETCWD, syscall.SYS_MKDIR,
+
+	// memory & mapping
+	// (mmap, brk, mprotect, munmap already above)
+
+	// control & device
+	// (ioctl already above)
+
+	// signals & threading
+	// (futex, rt_sigaction, rt_sigprocmask already above)
+	syscall.SYS_SET_TID_ADDRESS,
+
+	// randomness
+	// (getrandom / SYS_GETRANDOM already above)
+
+	// architecture-specific
+	syscall.SYS_ARCH_PRCTL,
+
+	// resource limits
+	syscall.SYS_PRLIMIT64,
+
+	// process management
+	syscall.SYS_UNAME, syscall.SYS_CLONE, syscall.SYS_EXECVE, syscall.SYS_SYSINFO,
+	syscall.SYS_SCHED_GETAFFINITY, syscall.SYS_MBIND,
 }
+
 
 var ALLOW_ERROR_SYSCALLS = []int{
 	syscall.SYS_CLONE,
