@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import traceback
+import numpy
 
 
 # setup sys.excepthook
